@@ -24,6 +24,8 @@ class SignalHandler
      * @param string        $namespace A namespace where to store the callback.
      *
      * @return SignalHandler
+     *
+     * @api
      */
     public function register($signals, $callback, $namespace = self::DEFAULT_NAMESPACE)
     {
@@ -43,6 +45,8 @@ class SignalHandler
      *
      * @param string  $namespace
      * @param integer $signal
+     *
+     * @api
      */
     public function unregisterNamespace($namespace, $signal = null)
     {
@@ -61,6 +65,8 @@ class SignalHandler
      * Unregisters callbacks given a signal.
      *
      * @param integer $signal
+     *
+     * @api
      */
     public function unregisterSignal($signal)
     {
@@ -72,7 +78,12 @@ class SignalHandler
         $this->cleanupHandle($signal);
     }
 
-    public function unregisterSignals()
+    /**
+     * Unregisters all handlers.
+     *
+     * @api
+     */
+    public function unregisterAll()
     {
         foreach (array_keys($this->signals) as $signal) {
             $this->unregisterSignal($signal);
@@ -101,6 +112,8 @@ class SignalHandler
      * Returns the singleton.
      *
      * @return SignalHandler
+     *
+     * @api
      */
     public static function getInstance()
     {

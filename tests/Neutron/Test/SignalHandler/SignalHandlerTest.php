@@ -9,7 +9,7 @@ class SignalHandlerTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         $handler = SignalHandler::getInstance();
-        $handler->unregisterSignals();
+        $handler->unregisterAll();
     }
 
     public function testRegisterSignals()
@@ -97,7 +97,7 @@ class SignalHandlerTest extends \PHPUnit_Framework_TestCase
         posix_kill(getmypid(), SIGCONT);
     }
 
-    public function testUnregisterSignals()
+    public function testUnregisterAll()
     {
         $handler = SignalHandler::getInstance();
         $handler->register(SIGIO, $this->expectCallableNever(), 'namespace');
@@ -105,7 +105,7 @@ class SignalHandlerTest extends \PHPUnit_Framework_TestCase
         $handler->register(SIGIO, $this->expectCallableNever(), 'namespace2');
         $handler->register(SIGCONT, $this->expectCallableNever(), 'namespace');
         $handler->register(SIGCONT, $this->expectCallableNever(), 'namespace2');
-        $handler->unregisterSignals();
+        $handler->unregisterAll();
         declare (ticks=1);
         posix_kill(getmypid(), SIGIO);
         posix_kill(getmypid(), SIGCONT);
