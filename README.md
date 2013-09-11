@@ -1,5 +1,7 @@
 # Signal Handler for PHP
 
+[![Build Status](https://travis-ci.org/romainneutron/signal-handler.png?branch=master)](https://travis-ci.org/romainneutron/signal-handler)
+
 A simple signal handler to manage incoming posix signals.
 
 It is implemented as a singleton as `pcntl_signal` can only register one
