@@ -139,7 +139,7 @@ class SignalHandler
     private function cleanupHandle($signal)
     {
         if (0 === count($this->signals[$signal])) {
-            pcntl_signal($signal, function () {});
+            pcntl_signal($signal, SIG_DFL);
             unset($this->signals[$signal]);
         }
     }
